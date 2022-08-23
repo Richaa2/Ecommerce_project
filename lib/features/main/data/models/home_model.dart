@@ -19,8 +19,7 @@ class HomeModel extends HomePageEntity {
     return HomeModel(
         homeStoreEntities: homeStorePage, bestSellerEntities: bestSellerPage);
   }
-
-  // factory HomeModel.fromJson(Map<String, dynamic> json) {
+} // factory HomeModel.fromJson(Map<String, dynamic> json) {
   //   // var homeStoreJson = json['home_store'] as HomeStoreEntity;
 
   //   // return HomeModel(
@@ -39,4 +38,3 @@ class HomeModel extends HomePageEntity {
   //   //         priceWithoutDiscount: json['best_seller[0].price_without_discount'],
   //   //         title: json['best_seller[0].title']));
   // }
-}

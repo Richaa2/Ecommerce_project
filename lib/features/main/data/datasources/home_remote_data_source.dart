@@ -7,7 +7,7 @@ import 'package:ecommerce_project/features/main/domain/usecases/get_home_store.d
 import 'package:http/http.dart' as http;
 
 abstract class HomeRemoteDataSource {
-  Future<List<HomeModel>> getHomePage();
+  Future<List<HomeModel>> getHomeStore();
   // getProductDetail();
   // getMyCart();
 }
@@ -18,13 +18,13 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   HomeRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<List<HomeModel>> getHomePage() async {
+  Future<List<HomeModel>> getHomeStore() async {
     final response = await client.get(
       Uri.parse('https://run.mocky.io/v3/654bd15e-b121-49ba-a588-960956b15175'),
     );
     if (response.statusCode == 200) {
       final homeElement = jsonDecode(response.body);
-      return (homeElement[''] as List)
+      return (homeElement['home_store'] as List)
           .map((e) => HomeModel.fromJson(e))
           .toList();
     } else {

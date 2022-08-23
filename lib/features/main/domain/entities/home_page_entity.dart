@@ -1,17 +1,17 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
-class HomePageEntity extends Equatable {
-  List<HomeStoreEntity> homeStoreEntity;
-  List<BestSellerEntity> bestSellerEntity;
-  HomePageEntity({
-    required this.homeStoreEntity,
-    required this.bestSellerEntity,
-  });
+// class HomePageEntity extends Equatable {
+//   List<HomeStoreEntity> homeStoreEntity;
+//   List<BestSellerEntity> bestSellerEntity;
+//   HomePageEntity({
+//     required this.homeStoreEntity,
+//     required this.bestSellerEntity,
+//   });
 
-  @override
-  List<Object> get props => [homeStoreEntity, bestSellerEntity];
-}
+//   @override
+//   List<Object> get props => [homeStoreEntity, bestSellerEntity];
+// }
 
 class HomeStoreEntity extends Equatable {
   final int id;

@@ -12,9 +12,9 @@ class MainInitial extends MainState {}
 class MainLoadingState extends MainState {}
 
 class MainLoadedState extends MainState {
-  final List<HomePageEntity> homePage;
+  final List<HomeStoreEntity> homeStore;
 
-  MainLoadedState(this.homePage);
+  MainLoadedState(this.homeStore);
 }
 
 class MainErrorState extends MainState {}

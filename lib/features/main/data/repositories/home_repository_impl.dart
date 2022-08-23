@@ -14,10 +14,10 @@ class HomeRepositoryImpl implements HomeRepository {
   HomeRepositoryImpl(
       {required this.remoteDataSource, required this.networkInfo});
   @override
-  Future<Either<Failure, List<HomePageEntity>>> getHomePage() async {
+  Future<Either<Failure, List<HomeStoreEntity>>> getHomeStore() async {
     if (await networkInfo.isConnected) {
       try {
-        final remoteHomeElement = await remoteDataSource.getHomePage();
+        final remoteHomeElement = await remoteDataSource.getHomeStore();
 
         return Right(remoteHomeElement);
       } on ServerFailure {
@@ -37,6 +37,12 @@ class HomeRepositoryImpl implements HomeRepository {
   @override
   Future<Either<Failure, List<ProductDetailEntity>>> getProductDetail() {
     // TODO: implement getProductDetail
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, List<BestSellerEntity>>> getBestSeller() {
+    // TODO: implement getBestSeller
     throw UnimplementedError();
   }
 }

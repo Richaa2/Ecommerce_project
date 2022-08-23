@@ -10,7 +10,7 @@ class GetHomeStore {
 
   GetHomeStore({required this.homeRepository});
 
-  Future<Either<Failure, List<HomePageEntity>>> getHomeSome() async {
-    return await homeRepository.getHomePage();
+  Future<Either<Failure, List<HomeStoreEntity>>> getHomeStore() async {
+    return await homeRepository.getHomeStore();
   }
 }

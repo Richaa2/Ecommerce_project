@@ -13,8 +13,12 @@ class MainLoadingState extends MainState {}
 
 class MainLoadedState extends MainState {
   final List<HomeStoreEntity> homeStore;
+  final List<BestSellerEntity> bestSeller;
 
-  MainLoadedState(this.homeStore);
+  MainLoadedState({
+    required this.homeStore,
+    required this.bestSeller,
+  });
 }
 
 class MainErrorState extends MainState {}

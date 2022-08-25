@@ -18,17 +18,29 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     on<LoadEvent>((event, emit) async {
       emit(MainLoadingState());
       final currentState = state;
-      List<HomeStoreEntity> homeElement = [];
+      List<HomeStoreEntity> homeStoreElement = [];
+      List<BestSellerEntity> homeBestElement = [];
 
-      if (currentState is MainLoadedState) {
-        homeElement = currentState.homeStore;
-      }
-      if (getHomeStoreBloc.getHomeStore() != null) {
-        final failureOrHome = await getHomeStoreBloc.getHomeStore();
+      final failureOrHomeBest = await getHomeStoreBloc.getBestSellers();
 
-        emit(failureOrHome.fold((failure) => MainErrorState(),
-            (homeElement) => MainLoadedState(homeElement)));
+      failureOrHomeBest.fold((failure) => MainErrorState(),
+          (bestElement) => homeBestElement.addAll(bestElement));
+
+      final failureOrHomeStore = await getHomeStoreBloc.getHomeStore();
+
+      failureOrHomeStore.fold((failure) => MainErrorState(),
+          (homeElement) => homeStoreElement.addAll(homeElement));
+
+      if (homeBestElement.isNotEmpty && homeStoreElement.isNotEmpty) {
+        emit(MainLoadedState(
+            homeStore: homeStoreElement, bestSeller: homeBestElement));
       }
+      print('1');
+
+      // if (currentState is MainLoadedState) {
+      //   homeStoreElement = currentState.homeStore;
+      //   homeBestElement = currentState.bestSeller;
+      // }
     });
 
     // on<LoadEvent>((event, emit) {

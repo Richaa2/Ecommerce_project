@@ -29,6 +29,21 @@ class HomeRepositoryImpl implements HomeRepository {
   }
 
   @override
+  Future<Either<Failure, List<BestSellerEntity>>> getBestSeller() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final remoteHomeElement = await remoteDataSource.getBestSeller();
+
+        return Right(remoteHomeElement);
+      } on ServerFailure {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
   Future<Either<Failure, List<MyCartEntity>>> getMyCart() {
     // TODO: implement getMyCart
     throw UnimplementedError();
@@ -37,12 +52,6 @@ class HomeRepositoryImpl implements HomeRepository {
   @override
   Future<Either<Failure, List<ProductDetailEntity>>> getProductDetail() {
     // TODO: implement getProductDetail
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<Failure, List<BestSellerEntity>>> getBestSeller() {
-    // TODO: implement getBestSeller
     throw UnimplementedError();
   }
 }

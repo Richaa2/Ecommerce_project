@@ -20,18 +20,34 @@ class HomeList extends StatelessWidget {
       },
       builder: (context, state) {
         return BlocBuilder<MainBloc, MainState>(builder: (context, state) {
-          List<HomeStoreEntity> homepageElement = [];
+          List<HomeStoreEntity> homePageStoreElement = [];
+          List<BestSellerEntity> homePageBestElement = [];
           if (state is MainInitial) {
             BlocProvider.of<MainBloc>(context, listen: false).add(LoadEvent());
           }
           if (state is MainLoadedState) {
-            homepageElement = state.homeStore;
-            return ListView.builder(
-                itemCount: homepageElement.length,
-                itemBuilder: ((context, index) {
-                  print(homepageElement.length);
-                  return Text(homepageElement[index].id.toString());
-                }));
+            homePageStoreElement = state.homeStore;
+            homePageBestElement = state.bestSeller;
+            print(homePageStoreElement.length);
+            print(homePageBestElement.length);
+            return Row(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                      itemCount: homePageBestElement.length,
+                      itemBuilder: ((context, index) {
+                        return Text(homePageBestElement[index].id.toString());
+                      })),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                      itemCount: homePageStoreElement.length,
+                      itemBuilder: ((context, index) {
+                        return Text(homePageStoreElement[index].id.toString());
+                      })),
+                ),
+              ],
+            );
           }
           return Container();
         });

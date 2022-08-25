@@ -13,4 +13,8 @@ class GetHomeStore {
   Future<Either<Failure, List<HomeStoreEntity>>> getHomeStore() async {
     return await homeRepository.getHomeStore();
   }
+
+  Future<Either<Failure, List<BestSellerEntity>>> getBestSellers() async {
+    return await homeRepository.getBestSeller();
+  }
 }

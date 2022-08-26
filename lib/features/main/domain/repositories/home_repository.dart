@@ -10,5 +10,5 @@ abstract class HomeRepository {
   Future<Either<Failure, List<HomeStoreEntity>>> getHomeStore();
   Future<Either<Failure, List<BestSellerEntity>>> getBestSeller();
   Future<Either<Failure, ProductDetailEntity>> getProductDetail();
-  // Future<Either<Failure, List<MyCartEntity>>> getMyCart();
+  Future<Either<Failure, MyCartEntity>> getMyCart();
 }

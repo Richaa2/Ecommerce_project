@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce_project/core/error/failure.dart';
 import 'package:ecommerce_project/features/main/domain/entities/home_page_entity.dart';
+import 'package:ecommerce_project/features/main/domain/entities/my_cart_entity.dart';
+import 'package:ecommerce_project/features/main/domain/entities/product_detail_entity.dart';
 import 'package:ecommerce_project/features/main/presentation/bloc/main_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -22,14 +24,20 @@ class HomeList extends StatelessWidget {
         return BlocBuilder<MainBloc, MainState>(builder: (context, state) {
           List<HomeStoreEntity> homePageStoreElement = [];
           List<BestSellerEntity> homePageBestElement = [];
+
           if (state is MainInitial) {
             BlocProvider.of<MainBloc>(context, listen: false).add(LoadEvent());
           }
           if (state is MainLoadedState) {
             homePageStoreElement = state.homeStore;
             homePageBestElement = state.bestSeller;
+            ProductDetailEntity productDetailPage = state.productDetail;
+            MyCartEntity cartPage = state.myCart;
             print(homePageStoreElement.length);
             print(homePageBestElement.length);
+            print(productDetailPage.id);
+            print(cartPage.basket);
+
             return Row(
               children: [
                 Expanded(

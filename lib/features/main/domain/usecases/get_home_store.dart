@@ -21,9 +21,9 @@ class GetHomeStore {
     return await homeRepository.getBestSeller();
   }
 
-  // Future<Either<Failure, List<MyCartEntity>>> getMyCart() async {
-  //   return await homeRepository.getMyCart();
-  // }
+  Future<Either<Failure, MyCartEntity>> getMyCart() async {
+    return await homeRepository.getMyCart();
+  }
 
   Future<Either<Failure, ProductDetailEntity>> getProductDetail() async {
     return await homeRepository.getProductDetail();

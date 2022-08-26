@@ -22,12 +22,12 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       final currentState = state;
       List<HomeStoreEntity> homeStoreElement = [];
       List<BestSellerEntity> homeBestElement = [];
-      // List<MyCartEntity> cartElement = [];
+      late MyCartEntity pageCartElement;
       late ProductDetailEntity productDetailElement;
 
       final failureOrHomeBest = await getHomeStoreBloc.getBestSellers();
       final failureOrHomeStore = await getHomeStoreBloc.getHomeStore();
-      // final failureOrCart = await getHomeStoreBloc.getMyCart();
+      final failureOrCart = await getHomeStoreBloc.getMyCart();
       final failureOrProduct = await getHomeStoreBloc.getProductDetail();
 
       failureOrHomeBest.fold((failure) => MainErrorState(),
@@ -36,16 +36,21 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       failureOrHomeStore.fold((failure) => MainErrorState(),
           (homeElement) => homeStoreElement.addAll(homeElement));
 
-      // failureOrCart.fold((failure) => MainErrorState(),
-      //     (cartElement) => cartElement.addAll(cartElement));
+      failureOrCart.fold((failure) => MainErrorState(),
+          (cartElement) => pageCartElement = cartElement);
       failureOrProduct.fold((failure) => MainErrorState(),
           (productElement) => productDetailElement = productElement);
 
       if (homeBestElement.isNotEmpty &&
           homeStoreElement.isNotEmpty &&
-          productDetailElement != null) {
+          productDetailElement != null &&
+          pageCartElement != null) {
         emit(MainLoadedState(
-            homeStore: homeStoreElement, bestSeller: homeBestElement));
+          homeStore: homeStoreElement,
+          bestSeller: homeBestElement,
+          productDetail: productDetailElement,
+          myCart: pageCartElement,
+        ));
       }
       print('1');
     });

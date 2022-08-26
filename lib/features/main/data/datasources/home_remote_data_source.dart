@@ -16,7 +16,7 @@ abstract class HomeRemoteDataSource {
   Future<List<HomeBestSellerModel>> getBestSeller();
 
   Future<ProductDetailModel> getProductDetail();
-  // Future<List<CartModel>> getMyCart();
+  Future<CartModel> getMyCart();
 }
 
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
@@ -116,19 +116,26 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     }
   }
 
-  // @override
-  // Future<List<CartModel>> getMyCart() async {
-  //   final response = await client.get(
-  //     Uri.parse('https://run.mocky.io/v3/53539a72-3c5f-4f30-bbb1-6ca10d42c149'),
-  //   );
-  //   if (response.statusCode == 200) {
-  //     final cartElement = jsonDecode(response.body);
+  @override
+  Future<CartModel> getMyCart() async {
+    final response = await client.get(
+      Uri.parse('https://run.mocky.io/v3/53539a72-3c5f-4f30-bbb1-6ca10d42c149'),
+    );
+    if (response.statusCode == 200) {
+      final cartElement = jsonDecode(response.body);
 
-  //     return (cartElement['basket'] as List)
-  //         .map((e) => CartModel.fromJson(e))
-  //         .toList();
-  //   } else {
-  //     throw ServerException();
-  //   }
-  // }
+      try {
+        final basket = cartElement["basket"];
+        final delivery = cartElement["delivery"] as String;
+        final id = cartElement["id"] as String;
+        final total = cartElement["total"] as int;
+        return CartModel(
+            delivery: delivery, basket: basket, id: id, total: total);
+      } catch (e) {
+        throw (e);
+      }
+    } else {
+      throw ServerException();
+    }
+  }
 }

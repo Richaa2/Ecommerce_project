@@ -43,20 +43,20 @@ class HomeRepositoryImpl implements HomeRepository {
     }
   }
 
-  // @override
-  // Future<Either<Failure, List<MyCartEntity>>> getMyCart() async {
-  //   if (await networkInfo.isConnected) {
-  //     try {
-  //       final remoteCartElement = await remoteDataSource.getMyCart();
+  @override
+  Future<Either<Failure, MyCartEntity>> getMyCart() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final remoteCartElement = await remoteDataSource.getMyCart();
 
-  //       return Right(remoteCartElement);
-  //     } on ServerFailure {
-  //       return Left(ServerFailure());
-  //     }
-  //   } else {
-  //     return Left(ServerFailure());
-  //   }
-  // }
+        return Right(remoteCartElement);
+      } on ServerFailure {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(ServerFailure());
+    }
+  }
 
   @override
   Future<Either<Failure, ProductDetailEntity>> getProductDetail() async {

@@ -15,10 +15,10 @@ class BasketModel extends BasketEntity {
 
   factory BasketModel.fromJson(Map<String, dynamic> json) {
     return BasketModel(
-      id: json['name'],
-      images: json['images'],
-      price: json['price'],
-      title: json['title'],
+      id: json['name'] as int,
+      images: json['images'] as String,
+      price: json['price'] as int,
+      title: json['title'] as String,
     );
   }
 }

@@ -4,6 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:ecommerce_project/core/error/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce_project/features/main/domain/entities/home_page_entity.dart';
+import 'package:ecommerce_project/features/main/domain/entities/my_cart_entity.dart';
+import 'package:ecommerce_project/features/main/domain/entities/product_detail_entity.dart';
 import 'package:ecommerce_project/features/main/domain/repositories/home_repository.dart';
 import 'package:equatable/equatable.dart';
 
@@ -20,52 +22,32 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       final currentState = state;
       List<HomeStoreEntity> homeStoreElement = [];
       List<BestSellerEntity> homeBestElement = [];
+      // List<MyCartEntity> cartElement = [];
+      late ProductDetailEntity productDetailElement;
 
       final failureOrHomeBest = await getHomeStoreBloc.getBestSellers();
+      final failureOrHomeStore = await getHomeStoreBloc.getHomeStore();
+      // final failureOrCart = await getHomeStoreBloc.getMyCart();
+      final failureOrProduct = await getHomeStoreBloc.getProductDetail();
 
       failureOrHomeBest.fold((failure) => MainErrorState(),
           (bestElement) => homeBestElement.addAll(bestElement));
 
-      final failureOrHomeStore = await getHomeStoreBloc.getHomeStore();
-
       failureOrHomeStore.fold((failure) => MainErrorState(),
           (homeElement) => homeStoreElement.addAll(homeElement));
 
-      if (homeBestElement.isNotEmpty && homeStoreElement.isNotEmpty) {
+      // failureOrCart.fold((failure) => MainErrorState(),
+      //     (cartElement) => cartElement.addAll(cartElement));
+      failureOrProduct.fold((failure) => MainErrorState(),
+          (productElement) => productDetailElement = productElement);
+
+      if (homeBestElement.isNotEmpty &&
+          homeStoreElement.isNotEmpty &&
+          productDetailElement != null) {
         emit(MainLoadedState(
             homeStore: homeStoreElement, bestSeller: homeBestElement));
       }
       print('1');
-
-      // if (currentState is MainLoadedState) {
-      //   homeStoreElement = currentState.homeStore;
-      //   homeBestElement = currentState.bestSeller;
-      // }
     });
-
-    // on<LoadEvent>((event, emit) {
-    //   emit(MainLoadingState());
-    //   final List<HomePageEntity> res =
-    //       getHomeStore.homeRepository.getHomePage().;
-    //   try {
-    //     emit(MainLoadedState(res));
-    //   } catch (e) {
-    //     print(e);
-    //   }
-    // });
   }
-  // FutureOr<void> _onEvent(event, emit) async {
-  //   if (state is MainInitial) {
-  //     final currentState = state;
-  //     var homeElement = [];
-  //     if (currentState is MainLoadedState) {
-  //       homeElement = currentState.homePage;
-  //     }
-  //     emit(MainLoadingState());
-  //     final failureOrHome = await getHomeStore();
-
-  //     emit(failureOrHome.fold((failure) => MainErrorState(),
-  //         (homeElement) => MainLoadedState(homeElement)));
-  //   }
-  // }
 }

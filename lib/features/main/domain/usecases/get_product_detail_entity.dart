@@ -10,7 +10,7 @@ class GetProductDetail {
 
   GetProductDetail(this.productDetailRepository);
 
-  Future<Either<Failure, List<ProductDetailEntity>>> call() async {
+  Future<Either<Failure, ProductDetailEntity>> call() async {
     return await productDetailRepository.getProductDetail();
   }
 }

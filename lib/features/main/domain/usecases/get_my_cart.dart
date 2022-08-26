@@ -9,7 +9,7 @@ class GetMyCart {
 
   GetMyCart(this.cartRepository);
 
-  Future<Either<Failure, List<MyCartEntity>>> call() async {
-    return await cartRepository.getMyCart();
-  }
+  // Future<Either<Failure, List<MyCartEntity>>> call() async {
+  //   return await cartRepository.getMyCart();
+  // }
 }

@@ -1,8 +1,12 @@
 import 'package:ecommerce_project/features/main/domain/entities/my_cart_entity.dart';
 
 class BasketModel extends BasketEntity {
-  BasketModel({required id, required images, required price, required title})
-      : super(
+  BasketModel({
+    required id,
+    required images,
+    required price,
+    required title,
+  }) : super(
           id: id,
           images: images,
           price: price,

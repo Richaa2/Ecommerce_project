@@ -6,8 +6,8 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class HotSalesList extends StatelessWidget {
-  final List<HomeStoreEntity> bestSeller;
-  const HotSalesList({Key? key, required this.bestSeller}) : super(key: key);
+  final List<HomeStoreEntity> hotSales;
+  const HotSalesList({Key? key, required this.hotSales}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,18 +18,83 @@ class HotSalesList extends StatelessWidget {
     return ListView.builder(
       physics: PageScrollPhysics(),
       scrollDirection: Axis.horizontal,
-      itemCount: bestSeller.length,
+      itemCount: hotSales.length,
       itemBuilder: (context, index) {
-        print(bestSeller[index].picture);
-        return Row(
+        return Stack(
           children: [
             Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: NetworkImage(bestSeller[index].picture),
-                      fit: BoxFit.cover),
+                      image: NetworkImage(hotSales[index].picture),
+                      fit: BoxFit.fitHeight),
                   borderRadius: BorderRadius.circular(10)),
               width: (93.5 / 100) * widthScreen,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(25),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 27,
+                    height: 27,
+                    decoration: hotSales[index].isNew != false
+                        ? BoxDecoration(shape: BoxShape.circle, color: orange)
+                        : null,
+                    child: hotSales[index].isNew != false
+                        ? const Center(
+                            child: Text(
+                              'New',
+                              style: TextStyle(
+                                  color: white,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w700,
+                                  fontFamily: 'SFProDisplay'),
+                            ),
+                          )
+                        : SizedBox(),
+                  ),
+                  Spacer(
+                    flex: 2,
+                  ),
+                  Text(
+                    hotSales[index].title,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: 'SFProDisplay'),
+                  ),
+                  Text(
+                    hotSales[index].subtitle,
+                    style: TextStyle(
+                        color: white,
+                        fontFamily: 'SFProDisplay',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400),
+                  ),
+                  Spacer(
+                    flex: 8,
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: white,
+                        fixedSize: Size((25 / 100) * widthScreen, 23)),
+                    onPressed: () {},
+                    child: const Text(
+                      'Buy now!',
+                      style: TextStyle(
+                          color: textColorblue,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: 'SFProDisplay'),
+                    ),
+                  ),
+                  Spacer(
+                    flex: 2,
+                  ),
+                ],
+              ),
             ),
           ],
         );

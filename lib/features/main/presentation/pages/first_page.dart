@@ -76,7 +76,7 @@ class FirstPage extends StatelessWidget {
                     Flexible(
                         flex: 5,
                         child: HotSalesList(
-                          bestSeller: state.homeStore,
+                          hotSales: state.homeStore,
                         )),
                     Spacer(
                       flex: 1,

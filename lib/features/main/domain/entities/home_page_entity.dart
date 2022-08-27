@@ -3,14 +3,14 @@ import 'package:equatable/equatable.dart';
 
 class HomeStoreEntity extends Equatable {
   final int id;
-  final bool? isNew;
+  final bool isNew;
   final String title;
   final String subtitle;
   final String picture;
   final bool isBuy;
   HomeStoreEntity({
     required this.id,
-    this.isNew,
+    required this.isNew,
     required this.title,
     required this.subtitle,
     required this.picture,

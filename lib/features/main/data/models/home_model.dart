@@ -2,6 +2,7 @@ import 'package:ecommerce_project/features/main/domain/entities/home_page_entity
 
 class HomeStoreModel extends HomeStoreEntity {
   HomeStoreModel({
+    required isNew,
     required id,
     required title,
     required subtitle,
@@ -12,7 +13,8 @@ class HomeStoreModel extends HomeStoreEntity {
             isBuy: isBuy,
             title: title,
             subtitle: subtitle,
-            picture: picture);
+            picture: picture,
+            isNew: isNew);
 
   factory HomeStoreModel.fromJson(Map<String, dynamic> json) {
     return HomeStoreModel(
@@ -21,6 +23,7 @@ class HomeStoreModel extends HomeStoreEntity {
       subtitle: json['subtitle'],
       picture: json['picture'],
       isBuy: json['is_buy'],
+      isNew: json['is_new'] ?? false,
     );
   }
 }

@@ -1,7 +1,5 @@
 import 'package:ecommerce_project/consts.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class ViewAll extends StatelessWidget {
   final String name;

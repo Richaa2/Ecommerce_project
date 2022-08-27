@@ -1,9 +1,7 @@
 import 'package:ecommerce_project/consts.dart';
 import 'package:ecommerce_project/features/main/domain/entities/home_page_entity.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class HotSalesList extends StatelessWidget {
   final List<HomeStoreEntity> hotSales;
@@ -16,7 +14,7 @@ class HotSalesList extends StatelessWidget {
     var widthScreen = screenSize.width;
 
     return ListView.builder(
-      physics: PageScrollPhysics(),
+      physics: const PageScrollPhysics(),
       scrollDirection: Axis.horizontal,
       itemCount: hotSales.length,
       itemBuilder: (context, index) {
@@ -39,7 +37,8 @@ class HotSalesList extends StatelessWidget {
                     width: 27,
                     height: 27,
                     decoration: hotSales[index].isNew != false
-                        ? BoxDecoration(shape: BoxShape.circle, color: orange)
+                        ? const BoxDecoration(
+                            shape: BoxShape.circle, color: orange)
                         : null,
                     child: hotSales[index].isNew != false
                         ? const Center(
@@ -52,14 +51,14 @@ class HotSalesList extends StatelessWidget {
                                   fontFamily: 'SFProDisplay'),
                             ),
                           )
-                        : SizedBox(),
+                        : const SizedBox(),
                   ),
-                  Spacer(
+                  const Spacer(
                     flex: 2,
                   ),
                   Text(
                     hotSales[index].title,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.white,
                         fontSize: 25,
                         fontWeight: FontWeight.w700,
@@ -67,13 +66,13 @@ class HotSalesList extends StatelessWidget {
                   ),
                   Text(
                     hotSales[index].subtitle,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: white,
                         fontFamily: 'SFProDisplay',
                         fontSize: 14,
                         fontWeight: FontWeight.w400),
                   ),
-                  Spacer(
+                  const Spacer(
                     flex: 8,
                   ),
                   ElevatedButton(
@@ -90,7 +89,7 @@ class HotSalesList extends StatelessWidget {
                           fontFamily: 'SFProDisplay'),
                     ),
                   ),
-                  Spacer(
+                  const Spacer(
                     flex: 2,
                   ),
                 ],

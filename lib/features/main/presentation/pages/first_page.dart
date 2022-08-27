@@ -11,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../domain/entities/home_page_entity.dart';
 import '../../domain/usecases/get_home_store.dart';
+import '../widgets/best_sellers_list.dart';
 import '../widgets/category_list.dart';
 import '../widgets/home_list_widget.dart';
 import '../widgets/search_widget.dart';
@@ -26,7 +27,7 @@ class FirstPage extends StatelessWidget {
     print(heightScreen);
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xffE5E5E5),
+        backgroundColor: const Color(0xffE5E5E5),
         body: BlocConsumer<MainBloc, MainState>(
           listener: (context, state) {
             log(state.toString());
@@ -40,54 +41,49 @@ class FirstPage extends StatelessWidget {
             }
 
             if (state is MainLoadedState) {
-              return Padding(
-                padding: EdgeInsets.symmetric(
-                    vertical: heightScreen / 70, horizontal: widthScreen / 30),
-                child: Column(
-                  children: [
-                    Spacer(
-                      flex: 1,
-                    ),
-                    LocationWidget(),
-                    Spacer(
-                      flex: 1,
-                    ),
-                    ViewAll(
-                      name: 'Select Category',
-                      secondTitle: 'view all',
-                    ),
-                    Spacer(
-                      flex: 1,
-                    ),
-                    Flexible(flex: 2, child: CategoryList()),
-                    Spacer(
-                      flex: 1,
-                    ),
-                    SearchWidget(),
-                    Spacer(
-                      flex: 1,
-                    ),
-                    ViewAll(
-                      name: 'Hot Sales',
-                    ),
-                    Spacer(
-                      flex: 1,
-                    ),
-                    Flexible(
-                        flex: 5,
+              return SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      vertical: heightScreen / 70,
+                      horizontal: widthScreen / 30),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: heightScreen / 39,
+                      ),
+                      const LocationWidget(),
+                      SizedBox(height: heightScreen / 45),
+                      const ViewAll(
+                        name: 'Select Category',
+                        secondTitle: 'view all',
+                      ),
+                      SizedBox(height: heightScreen / 34),
+                      Container(height: 100, child: const CategoryList()),
+                      SizedBox(height: heightScreen / 23),
+                      const SearchWidget(),
+                      SizedBox(height: heightScreen / 34),
+                      const ViewAll(
+                        name: 'Hot Sales',
+                      ),
+                      SizedBox(height: heightScreen / 52),
+                      Container(
+                        height: heightScreen / 4.1,
                         child: HotSalesList(
                           hotSales: state.homeStore,
-                        )),
-                    Spacer(
-                      flex: 1,
-                    ),
-                    ViewAll(
-                      name: 'Best Seller',
-                    ),
-                    Spacer(
-                      flex: 1,
-                    ),
-                  ],
+                        ),
+                      ),
+                      SizedBox(height: heightScreen / 52),
+                      const ViewAll(
+                        name: 'Best Seller',
+                      ),
+                      SizedBox(height: heightScreen / 52),
+                      SizedBox(
+                          height: 120 * state.bestSeller.length.toDouble(),
+                          child: BestSellersList(
+                            bestSeller: state.bestSeller,
+                          )),
+                    ],
+                  ),
                 ),
               );
             }

@@ -1,8 +1,5 @@
 import 'package:ecommerce_project/consts.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class CategoryRoundButton extends StatelessWidget {
   bool selectedCategoty;
@@ -23,19 +20,20 @@ class CategoryRoundButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(right: 23),
+      padding: const EdgeInsets.only(right: 23),
       child: Column(
         children: [
           Expanded(
             child: Container(
               decoration: BoxDecoration(
                 boxShadow: [
-                  BoxShadow(
+                  const BoxShadow(
                       color: Color.fromRGBO(167, 171, 201, 0.15),
                       offset: Offset(4, 5))
                 ],
                 shape: BoxShape.circle,
-                color: selectedCategoty == true ? orange : Color(0xffFFFFFF),
+                color:
+                    selectedCategoty == true ? orange : const Color(0xffFFFFFF),
               ),
               width: 71,
               child: IconButton(
@@ -43,10 +41,10 @@ class CategoryRoundButton extends StatelessWidget {
                     ? (Icon(
                         icons[index],
                         color: selectedCategoty == true
-                            ? Color(0xffFFFFFF)
-                            : Color(0xffB3B3C3),
+                            ? const Color(0xffFFFFFF)
+                            : const Color(0xffB3B3C3),
                       ))
-                    : Icon(Icons.error),
+                    : const Icon(Icons.error),
                 onPressed: () {
                   selectedCategoty = true;
                 },
@@ -55,7 +53,7 @@ class CategoryRoundButton extends StatelessWidget {
           ),
           Text(
             index < icons.length ? nameCategory[index] : '',
-            style: TextStyle(
+            style: const TextStyle(
                 color: textColorblue,
                 fontSize: 12,
                 fontWeight: FontWeight.w500),

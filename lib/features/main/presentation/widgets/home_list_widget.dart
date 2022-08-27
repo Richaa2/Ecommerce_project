@@ -1,14 +1,9 @@
 import 'dart:developer';
-
-import 'package:dartz/dartz.dart';
-import 'package:ecommerce_project/core/error/failure.dart';
 import 'package:ecommerce_project/features/main/domain/entities/home_page_entity.dart';
 import 'package:ecommerce_project/features/main/domain/entities/my_cart_entity.dart';
 import 'package:ecommerce_project/features/main/domain/entities/product_detail_entity.dart';
 import 'package:ecommerce_project/features/main/presentation/bloc/main_bloc.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeList extends StatelessWidget {

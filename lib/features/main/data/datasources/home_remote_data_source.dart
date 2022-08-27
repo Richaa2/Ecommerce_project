@@ -1,14 +1,9 @@
 import 'dart:convert';
-import 'dart:io';
 
-import 'package:dartz/dartz.dart';
-import 'package:dartz/dartz_streaming.dart';
 import 'package:ecommerce_project/core/error/exception.dart';
 import 'package:ecommerce_project/features/main/data/models/cart_model.dart';
 import 'package:ecommerce_project/features/main/data/models/home_model.dart';
 import 'package:ecommerce_project/features/main/data/models/product_detail_model.dart';
-import 'package:ecommerce_project/features/main/domain/entities/home_page_entity.dart';
-import 'package:ecommerce_project/features/main/domain/usecases/get_home_store.dart';
 import 'package:http/http.dart' as http;
 
 abstract class HomeRemoteDataSource {

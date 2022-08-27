@@ -16,18 +16,6 @@ class MyCartEntity extends Equatable {
 
   @override
   List<Object> get props => [basket, delivery, id, total];
-
-  // factory MyCartEntity.fromMap(Map<String, dynamic> map) {
-  //   return MyCartEntity(
-  //     basket: map['basket'],
-  //     delivery: map['delivery'] ?? '',
-  //     id: map['id'] ?? '',
-  //     total: map['total']?.toInt() ?? 0,
-  //   );
-  // }
-
-  // factory MyCartEntity.fromJson(String source) =>
-  //     MyCartEntity.fromMap(json.decode(source));
 }
 
 class BasketEntity {
@@ -41,13 +29,4 @@ class BasketEntity {
       required this.images,
       required this.price,
       required this.title});
-
-  // factory BasketEntity.fromJson(Map<String, dynamic> json) {
-  //   return BasketEntity(
-  //     id: json['id'],
-  //     images: json['images'],
-  //     price: json['price'],
-  //     title: json['title'],
-  //   );
-  // }
 }

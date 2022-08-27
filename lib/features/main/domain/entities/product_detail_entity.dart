@@ -48,25 +48,6 @@ class ProductDetailEntity extends Equatable {
     ];
   }
 
-  Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-
-    result.addAll({'cpu': cpu});
-    result.addAll({'camera': camera});
-    result.addAll({'capacity': capacity});
-    result.addAll({'color': color});
-    result.addAll({'id': id});
-    result.addAll({'images': images});
-    result.addAll({'isFavotite': isFavotite});
-    result.addAll({'price': price});
-    result.addAll({'rating': rating});
-    result.addAll({'sd': sd});
-    result.addAll({'ssd': ssd});
-    result.addAll({'title': title});
-
-    return result;
-  }
-
   factory ProductDetailEntity.fromMap(Map<String, dynamic> map) {
     return ProductDetailEntity(
       cpu: map['cpu'] ?? '',
@@ -83,8 +64,6 @@ class ProductDetailEntity extends Equatable {
       title: map['title'] ?? '',
     );
   }
-
-  String toJson() => json.encode(toMap());
 
   factory ProductDetailEntity.fromJson(String source) =>
       ProductDetailEntity.fromMap(json.decode(source));

@@ -29,20 +29,47 @@ class HomeRepositoryImpl implements HomeRepository {
   }
 
   @override
-  Future<Either<Failure, List<MyCartEntity>>> getMyCart() {
-    // TODO: implement getMyCart
-    throw UnimplementedError();
+  Future<Either<Failure, List<BestSellerEntity>>> getBestSeller() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final remoteHomeElement = await remoteDataSource.getBestSeller();
+
+        return Right(remoteHomeElement);
+      } on ServerFailure {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(ServerFailure());
+    }
   }
 
   @override
-  Future<Either<Failure, List<ProductDetailEntity>>> getProductDetail() {
-    // TODO: implement getProductDetail
-    throw UnimplementedError();
+  Future<Either<Failure, MyCartEntity>> getMyCart() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final remoteCartElement = await remoteDataSource.getMyCart();
+
+        return Right(remoteCartElement);
+      } on ServerFailure {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(ServerFailure());
+    }
   }
 
   @override
-  Future<Either<Failure, List<BestSellerEntity>>> getBestSeller() {
-    // TODO: implement getBestSeller
-    throw UnimplementedError();
+  Future<Either<Failure, ProductDetailEntity>> getProductDetail() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final remoteProductElement = await remoteDataSource.getProductDetail();
+
+        return Right(remoteProductElement);
+      } on ServerFailure {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(ServerFailure());
+    }
   }
 }

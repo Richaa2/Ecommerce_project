@@ -4,6 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:ecommerce_project/core/error/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce_project/features/main/domain/entities/home_page_entity.dart';
+import 'package:ecommerce_project/features/main/domain/entities/my_cart_entity.dart';
+import 'package:ecommerce_project/features/main/domain/entities/product_detail_entity.dart';
 import 'package:ecommerce_project/features/main/domain/repositories/home_repository.dart';
 import 'package:equatable/equatable.dart';
 
@@ -18,42 +20,39 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     on<LoadEvent>((event, emit) async {
       emit(MainLoadingState());
       final currentState = state;
-      List<HomeStoreEntity> homeElement = [];
+      List<HomeStoreEntity> homeStoreElement = [];
+      List<BestSellerEntity> homeBestElement = [];
+      late MyCartEntity pageCartElement;
+      late ProductDetailEntity productDetailElement;
 
-      if (currentState is MainLoadedState) {
-        homeElement = currentState.homeStore;
-      }
-      if (getHomeStoreBloc.getHomeStore() != null) {
-        final failureOrHome = await getHomeStoreBloc.getHomeStore();
+      final failureOrHomeBest = await getHomeStoreBloc.getBestSellers();
+      final failureOrHomeStore = await getHomeStoreBloc.getHomeStore();
+      final failureOrCart = await getHomeStoreBloc.getMyCart();
+      final failureOrProduct = await getHomeStoreBloc.getProductDetail();
 
-        emit(failureOrHome.fold((failure) => MainErrorState(),
-            (homeElement) => MainLoadedState(homeElement)));
+      failureOrHomeBest.fold((failure) => MainErrorState(),
+          (bestElement) => homeBestElement.addAll(bestElement));
+
+      failureOrHomeStore.fold((failure) => MainErrorState(),
+          (homeElement) => homeStoreElement.addAll(homeElement));
+
+      failureOrCart.fold((failure) => MainErrorState(),
+          (cartElement) => pageCartElement = cartElement);
+      failureOrProduct.fold((failure) => MainErrorState(),
+          (productElement) => productDetailElement = productElement);
+
+      if (homeBestElement.isNotEmpty &&
+          homeStoreElement.isNotEmpty &&
+          productDetailElement != null &&
+          pageCartElement != null) {
+        emit(MainLoadedState(
+          homeStore: homeStoreElement,
+          bestSeller: homeBestElement,
+          productDetail: productDetailElement,
+          myCart: pageCartElement,
+        ));
       }
+      print('1');
     });
-
-    // on<LoadEvent>((event, emit) {
-    //   emit(MainLoadingState());
-    //   final List<HomePageEntity> res =
-    //       getHomeStore.homeRepository.getHomePage().;
-    //   try {
-    //     emit(MainLoadedState(res));
-    //   } catch (e) {
-    //     print(e);
-    //   }
-    // });
   }
-  // FutureOr<void> _onEvent(event, emit) async {
-  //   if (state is MainInitial) {
-  //     final currentState = state;
-  //     var homeElement = [];
-  //     if (currentState is MainLoadedState) {
-  //       homeElement = currentState.homePage;
-  //     }
-  //     emit(MainLoadingState());
-  //     final failureOrHome = await getHomeStore();
-
-  //     emit(failureOrHome.fold((failure) => MainErrorState(),
-  //         (homeElement) => MainLoadedState(homeElement)));
-  //   }
-  // }
 }

@@ -9,6 +9,6 @@ import '../entities/product_detail_entity.dart';
 abstract class HomeRepository {
   Future<Either<Failure, List<HomeStoreEntity>>> getHomeStore();
   Future<Either<Failure, List<BestSellerEntity>>> getBestSeller();
-  Future<Either<Failure, List<ProductDetailEntity>>> getProductDetail();
-  Future<Either<Failure, List<MyCartEntity>>> getMyCart();
+  Future<Either<Failure, ProductDetailEntity>> getProductDetail();
+  Future<Either<Failure, MyCartEntity>> getMyCart();
 }

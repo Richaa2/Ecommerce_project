@@ -16,12 +16,11 @@ class CartModel extends MyCartEntity {
         );
   factory CartModel.fromJson(Map<String, dynamic> json) {
     return CartModel(
-      id: json['id'] as String,
-      basket: json['basket'] != null
-          ? BasketModel.fromJson(json['basket']) as List
-          : null,
+      basket:
+          json['basket'] != null ? BasketModel.fromJson(json['basket']) : null,
       delivery: json['delivery'] as String,
       total: json['total'] as int,
+      id: json['id'] as String,
     );
   }
 }

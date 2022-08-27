@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 
 class MyCartEntity extends Equatable {
-  final BasketEntity basket;
+  final List<dynamic> basket;
   final String delivery;
   final String id;
   final int total;
@@ -17,30 +17,17 @@ class MyCartEntity extends Equatable {
   @override
   List<Object> get props => [basket, delivery, id, total];
 
-  Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
+  // factory MyCartEntity.fromMap(Map<String, dynamic> map) {
+  //   return MyCartEntity(
+  //     basket: map['basket'],
+  //     delivery: map['delivery'] ?? '',
+  //     id: map['id'] ?? '',
+  //     total: map['total']?.toInt() ?? 0,
+  //   );
+  // }
 
-    result.addAll({'basket': basket.toMap()});
-    result.addAll({'delivery': delivery});
-    result.addAll({'id': id});
-    result.addAll({'total': total});
-
-    return result;
-  }
-
-  factory MyCartEntity.fromMap(Map<String, dynamic> map) {
-    return MyCartEntity(
-      basket: BasketEntity.fromMap(map['basket']),
-      delivery: map['delivery'] ?? '',
-      id: map['id'] ?? '',
-      total: map['total']?.toInt() ?? 0,
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory MyCartEntity.fromJson(String source) =>
-      MyCartEntity.fromMap(json.decode(source));
+  // factory MyCartEntity.fromJson(String source) =>
+  //     MyCartEntity.fromMap(json.decode(source));
 }
 
 class BasketEntity {
@@ -55,28 +42,12 @@ class BasketEntity {
       required this.price,
       required this.title});
 
-  Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-
-    result.addAll({'id': id});
-    result.addAll({'images': images});
-    result.addAll({'price': price});
-    result.addAll({'title': title});
-
-    return result;
-  }
-
-  factory BasketEntity.fromMap(Map<String, dynamic> map) {
-    return BasketEntity(
-      id: map['id'] ?? '',
-      images: map['images'] ?? '',
-      price: map['price']?.toInt() ?? 0,
-      title: map['title'] ?? '',
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory BasketEntity.fromJson(String source) =>
-      BasketEntity.fromMap(json.decode(source));
+  // factory BasketEntity.fromJson(Map<String, dynamic> json) {
+  //   return BasketEntity(
+  //     id: json['id'],
+  //     images: json['images'],
+  //     price: json['price'],
+  //     title: json['title'],
+  //   );
+  // }
 }

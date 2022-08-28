@@ -1,3 +1,5 @@
+import 'package:ecommerce_project/features/main/presentation/bloc/category_bloc/category_bloc.dart';
+import 'package:ecommerce_project/features/main/presentation/bloc/cubit/category_cubit.dart';
 import 'package:ecommerce_project/features/main/presentation/bloc/main_bloc.dart';
 import 'package:ecommerce_project/locator_service.dart' as di;
 import 'package:ecommerce_project/locator_service.dart';
@@ -18,8 +20,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<MainBloc>(
-      create: (context) => sl<MainBloc>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<MainBloc>(
+          create: (context) => sl<MainBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => CategoryBloc(),
+        ),
+        BlocProvider(
+          create: (context) => CategoryCubit(),
+        ),
+      ],
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(

@@ -21,12 +21,12 @@ class HotSalesList extends StatelessWidget {
         return Stack(
           children: [
             Container(
+              width: (93 / 100) * widthScreen,
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: NetworkImage(hotSales[index].picture),
                       fit: BoxFit.fitHeight),
                   borderRadius: BorderRadius.circular(10)),
-              width: (93.5 / 100) * widthScreen,
             ),
             Padding(
               padding: const EdgeInsets.all(25),

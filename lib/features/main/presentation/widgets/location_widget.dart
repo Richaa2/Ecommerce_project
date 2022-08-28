@@ -1,4 +1,5 @@
 import 'package:ecommerce_project/consts.dart';
+import 'package:ecommerce_project/features/main/presentation/widgets/filter.dart';
 import 'package:flutter/material.dart';
 
 class LocationWidget extends StatelessWidget {
@@ -8,27 +9,31 @@ class LocationWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
-        Spacer(
+      children: [
+        const Spacer(
           flex: 1,
         ),
-        Icon(
+        const Icon(
           Icons.place_outlined,
           color: orange,
         ),
-        Text(
+        const Text(
           'Zihuatanejo, Gro',
           style: TextStyle(
               color: textColorblue, fontSize: 15, fontWeight: FontWeight.w500),
         ),
-        Icon(Icons.arrow_drop_down_outlined),
-        Spacer(
+        const Icon(Icons.arrow_drop_down_outlined),
+        const Spacer(
           flex: 1,
         ),
-        Icon(
-          Icons.filter_alt_outlined,
-          color: textColorblue,
-        )
+        IconButton(
+            icon: const Icon(
+              Icons.filter_alt_outlined,
+              color: textColorblue,
+            ),
+            onPressed: () {
+              showModalBottomSheetMetod(context);
+            })
       ],
     );
   }

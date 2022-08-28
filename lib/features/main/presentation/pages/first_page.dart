@@ -54,28 +54,19 @@ class FirstPage extends StatelessWidget {
                       const LocationWidget(),
                       SizedBox(height: heightScreen / 45),
                       const ViewAll(
-                        name: 'Select Category',
-                        secondTitle: 'view all',
-                      ),
+                          name: 'Select Category', secondTitle: 'view all'),
                       SizedBox(height: heightScreen / 34),
                       Container(height: 100, child: const CategoryList()),
                       SizedBox(height: heightScreen / 23),
                       const SearchWidget(),
                       SizedBox(height: heightScreen / 34),
-                      const ViewAll(
-                        name: 'Hot Sales',
-                      ),
+                      const ViewAll(name: 'Hot Sales'),
                       SizedBox(height: heightScreen / 52),
                       Container(
-                        height: heightScreen / 4.1,
-                        child: HotSalesList(
-                          hotSales: state.homeStore,
-                        ),
-                      ),
+                          height: heightScreen / 4.1,
+                          child: HotSalesList(hotSales: state.homeStore)),
                       SizedBox(height: heightScreen / 52),
-                      const ViewAll(
-                        name: 'Best Seller',
-                      ),
+                      const ViewAll(name: 'Best Seller'),
                       SizedBox(height: heightScreen / 52),
                       SizedBox(
                           height: 120 * state.bestSeller.length.toDouble(),

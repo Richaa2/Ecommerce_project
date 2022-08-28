@@ -24,7 +24,7 @@ class FirstPage extends StatelessWidget {
     var screenSize = MediaQuery.of(context).size;
     var heightScreen = screenSize.height;
     var widthScreen = screenSize.width;
-    print(heightScreen);
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xffE5E5E5),
@@ -33,11 +33,12 @@ class FirstPage extends StatelessWidget {
             log(state.toString());
           },
           builder: (context, state) {
-            List<HomeStoreEntity> homePageStoreElement = [];
-            List<BestSellerEntity> homePageBestElement = [];
             if (state is MainInitial) {
               BlocProvider.of<MainBloc>(context, listen: false)
                   .add(LoadEvent());
+            }
+            if (state is MainLoadingState) {
+              return const Center(child: CircularProgressIndicator());
             }
 
             if (state is MainLoadedState) {
@@ -48,31 +49,15 @@ class FirstPage extends StatelessWidget {
                       horizontal: widthScreen / 30),
                   child: Column(
                     children: [
-                      SizedBox(
-                        height: heightScreen / 39,
-                      ),
                       const LocationWidget(),
-                      SizedBox(height: heightScreen / 45),
                       const ViewAll(
                           name: 'Select Category', secondTitle: 'view all'),
-                      SizedBox(height: heightScreen / 34),
-                      Container(height: 100, child: const CategoryList()),
-                      SizedBox(height: heightScreen / 23),
+                      const CategoryList(),
                       const SearchWidget(),
-                      SizedBox(height: heightScreen / 34),
                       const ViewAll(name: 'Hot Sales'),
-                      SizedBox(height: heightScreen / 52),
-                      Container(
-                          height: heightScreen / 4.1,
-                          child: HotSalesList(hotSales: state.homeStore)),
-                      SizedBox(height: heightScreen / 52),
+                      HotSalesList(hotSales: state.homeStore),
                       const ViewAll(name: 'Best Seller'),
-                      SizedBox(height: heightScreen / 52),
-                      SizedBox(
-                          height: 120 * state.bestSeller.length.toDouble(),
-                          child: BestSellersList(
-                            bestSeller: state.bestSeller,
-                          )),
+                      BestSellersList(bestSeller: state.bestSeller),
                     ],
                   ),
                 ),

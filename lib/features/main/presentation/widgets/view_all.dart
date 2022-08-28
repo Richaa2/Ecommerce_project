@@ -9,22 +9,40 @@ class ViewAll extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    var screenSize = MediaQuery.of(context).size;
+    var heightScreen = screenSize.height;
+    return Column(
       children: [
-        Text(
-          name,
-          style: TextStyle(
-            color: textColorblue,
-            fontWeight: FontWeight.w700,
-            fontSize: 25,
-          ),
+        SizedBox(
+            height: name == 'Select Category'
+                ? heightScreen / 45
+                : name == 'Hot Sales'
+                    ? heightScreen / 34
+                    : heightScreen / 52),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              name,
+              style: TextStyle(
+                color: textColorblue,
+                fontWeight: FontWeight.w700,
+                fontSize: 25,
+              ),
+            ),
+            Text(
+              secondTitle,
+              style: TextStyle(
+                  color: orange, fontWeight: FontWeight.w400, fontSize: 15),
+            ),
+          ],
         ),
-        Text(
-          secondTitle,
-          style: TextStyle(
-              color: orange, fontWeight: FontWeight.w400, fontSize: 15),
-        ),
+        SizedBox(
+            height: name == 'Select Category'
+                ? heightScreen / 34
+                : name == 'Hot Sales'
+                    ? heightScreen / 52
+                    : heightScreen / 52),
       ],
     );
   }

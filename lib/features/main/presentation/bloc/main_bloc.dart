@@ -52,7 +52,6 @@ class MainBloc extends Bloc<MainEvent, MainState> {
           myCart: pageCartElement,
         ));
       }
-      print('1');
     });
   }
 }

@@ -16,9 +16,9 @@ class ProductDetailAppBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           button(() => Navigator.pop(context), true),
-          Text(
+          const Text(
             'Product Details',
-            style: TextStyle(
+            style: const TextStyle(
                 color: textColorblue,
                 fontSize: 18,
                 fontWeight: FontWeight.w500),

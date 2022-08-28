@@ -6,8 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../consts.dart';
-import '../../domain/entities/category_entity.dart';
+import '../../../../../consts.dart';
 import 'category_round_button.dart';
 
 class CategoryList extends StatelessWidget {

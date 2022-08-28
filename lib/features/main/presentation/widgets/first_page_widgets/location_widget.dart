@@ -1,6 +1,7 @@
 import 'package:ecommerce_project/consts.dart';
-import 'package:ecommerce_project/features/main/presentation/widgets/filter.dart';
 import 'package:flutter/material.dart';
+
+import 'filter.dart';
 
 class LocationWidget extends StatelessWidget {
   const LocationWidget({Key? key}) : super(key: key);

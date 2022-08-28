@@ -1,23 +1,19 @@
 import 'dart:developer';
 
-import 'package:ecommerce_project/core/error/failure.dart';
 import 'package:ecommerce_project/features/main/presentation/bloc/main_bloc.dart';
-import 'package:ecommerce_project/features/main/presentation/widgets/hot_sales_list.dart';
-import 'package:ecommerce_project/features/main/presentation/widgets/location_widget.dart';
-import 'package:ecommerce_project/features/main/presentation/widgets/view_all.dart';
-import 'package:flutter/foundation.dart';
+import 'package:ecommerce_project/features/main/presentation/widgets/first_page_widgets/best_sellers_list.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../domain/entities/home_page_entity.dart';
-import '../../domain/usecases/get_home_store.dart';
-import '../widgets/best_sellers_list.dart';
-import '../widgets/category_list.dart';
-import '../widgets/home_list_widget.dart';
-import '../widgets/search_widget.dart';
+import '../widgets/first_page_widgets/category_list.dart';
+import '../widgets/first_page_widgets/hot_sales_list.dart';
+import '../widgets/first_page_widgets/location_widget.dart';
+import '../widgets/first_page_widgets/search_widget.dart';
+import '../widgets/first_page_widgets/view_all.dart';
 
 class FirstPage extends StatelessWidget {
-  FirstPage({Key? key}) : super(key: key);
+  const FirstPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

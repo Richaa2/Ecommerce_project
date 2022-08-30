@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce_project/consts.dart';
 import 'package:ecommerce_project/features/main/domain/entities/home_page_entity.dart';
 
@@ -15,11 +16,10 @@ class HotSalesList extends StatelessWidget {
 
     return Container(
       height: heightScreen / 4.1,
-      child: ListView.builder(
-        physics: const PageScrollPhysics(),
-        scrollDirection: Axis.horizontal,
+      child: CarouselSlider.builder(
+        options: CarouselOptions(viewportFraction: 1),
         itemCount: hotSales.length,
-        itemBuilder: (context, index) {
+        itemBuilder: (context, index, pageIndex) {
           return Stack(
             children: [
               Container(

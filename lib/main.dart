@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           fontFamily: 'MarkPro',
           primaryColor: Color(0xffE5E5E5),
         ),
-        home: ProductDetailPage(),
+        home: FirstPage(),
       ),
     );
   }

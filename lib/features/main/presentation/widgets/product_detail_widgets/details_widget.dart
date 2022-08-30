@@ -27,7 +27,7 @@ class Details extends StatelessWidget {
             children: [
               Text(
                 productDetailEntity.title,
-                style: TextStyle(
+                style: const TextStyle(
                     color: textColorblue,
                     fontSize: 24,
                     fontWeight: FontWeight.w500),
@@ -74,7 +74,7 @@ class Details extends StatelessWidget {
               detail(FontAwesomeIcons.memory, productDetailEntity.sd),
             ],
           ),
-          Text(
+          const Text(
             'Select color and capacity',
             style: TextStyle(
                 color: textColorblue,
@@ -88,7 +88,7 @@ class Details extends StatelessWidget {
               children: [
                 colorButton(true),
                 colorButton(false),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 capacityContainer(true),
@@ -135,7 +135,7 @@ class Details extends StatelessWidget {
           productDetailEntity.capacity[less ? 0 : 1] + ' GB',
           style: TextStyle(
               fontSize: 13,
-              color: less ? white : Color(0xff8D8D8D),
+              color: less ? white : const Color(0xff8D8D8D),
               fontWeight: FontWeight.w700),
         )),
       ),
@@ -160,7 +160,7 @@ class Details extends StatelessWidget {
           ),
         ),
         child: brownOrBlue
-            ? Icon(
+            ? const Icon(
                 Icons.check,
                 color: Color(0xffFAFAFA),
                 size: 20,
@@ -178,15 +178,15 @@ class Details extends StatelessWidget {
           FaIcon(
             icon,
             size: 28,
-            color: Color(0xffB7B7B7),
+            color: const Color(0xffB7B7B7),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Text(
             name,
-            style: TextStyle(
-                color: Color(0xffB7B7B7),
+            style: const TextStyle(
+                color: const Color(0xffB7B7B7),
                 fontSize: 11,
                 fontWeight: FontWeight.w400),
           ),
@@ -199,7 +199,7 @@ class Details extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 33),
       child: Container(
-        padding: EdgeInsets.only(
+        padding: const EdgeInsets.only(
           bottom: 8,
         ),
         decoration: BoxDecoration(
@@ -215,7 +215,7 @@ class Details extends StatelessWidget {
             fontWeight: currentPage ? FontWeight.w700 : FontWeight.w400,
             color: currentPage
                 ? textColorblue
-                : Color(0xff000000).withOpacity(0.5),
+                : const Color(0xff000000).withOpacity(0.5),
           ),
         ),
       ),
@@ -223,9 +223,9 @@ class Details extends StatelessWidget {
   }
 
   Padding star() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 9, top: 8, bottom: 32),
-      child: Icon(
+    return const Padding(
+      padding: EdgeInsets.only(left: 9, top: 8, bottom: 32),
+      child: const Icon(
         Icons.grade,
         color: Color(0xffFFB800),
         size: 18,

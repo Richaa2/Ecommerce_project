@@ -8,6 +8,8 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../widgets/product_detail_widgets/list_details.dart';
+
 class ProductDetailPage extends StatelessWidget {
   const ProductDetailPage({Key? key}) : super(key: key);
 
@@ -36,8 +38,14 @@ class ProductDetailPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     ProductDetailAppBar(),
-                    Container(
-                      height: 350,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: 350,
+                        child: ListViewDetails(
+                          productDetailEntity: state.productDetail,
+                        ),
+                      ),
                     ),
                     DetailContainer(
                       productDetailEntity: state.productDetail,

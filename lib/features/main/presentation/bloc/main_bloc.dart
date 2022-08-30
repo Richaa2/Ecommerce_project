@@ -19,7 +19,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
   MainBloc({required this.getHomeStoreBloc}) : super(MainInitial()) {
     on<LoadEvent>((event, emit) async {
       emit(MainLoadingState());
-      final currentState = state;
+
       List<HomeStoreEntity> homeStoreElement = [];
       List<BestSellerEntity> homeBestElement = [];
       late MyCartEntity pageCartElement;
@@ -52,7 +52,6 @@ class MainBloc extends Bloc<MainEvent, MainState> {
           myCart: pageCartElement,
         ));
       }
-      print('1');
     });
   }
 }

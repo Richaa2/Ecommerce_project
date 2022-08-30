@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'features/main/domain/entities/category_entity.dart';
+
 const Color textColorblue = Color(0xff010035);
 
 const Color orange = Color(0xffFF6E4E);
@@ -22,3 +24,14 @@ const List<String> size = [
   '7.5 to 8.5 inches'
 ];
 String selectedSize = size[0];
+
+List<CategoryEntity> categories = [
+  CategoryEntity(
+      icon: Icons.phone_android_outlined, name: 'Phones', selected: true),
+  CategoryEntity(
+      icon: Icons.computer_outlined, name: 'Computer', selected: false),
+  CategoryEntity(
+      icon: Icons.health_and_safety_outlined, name: 'Health', selected: false),
+  CategoryEntity(
+      icon: Icons.menu_book_outlined, name: 'Books', selected: false),
+];

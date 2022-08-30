@@ -20,9 +20,6 @@ class ListViewDetails extends StatelessWidget {
             decoration: BoxDecoration(
               color: white,
               borderRadius: BorderRadius.circular(10),
-              // image: DecorationImage(
-              //     image: NetworkImage(productDetailEntity.images[1]),
-              //     fit: BoxFit.cover),
             ),
             width: 270,
             child: Container(

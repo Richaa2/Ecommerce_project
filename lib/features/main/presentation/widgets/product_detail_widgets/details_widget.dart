@@ -96,16 +96,19 @@ class Details extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            height: 54,
-            decoration: BoxDecoration(
-                color: orange, borderRadius: BorderRadius.circular(10)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                whiteBoldText('Add to Cart', 20),
-                whiteBoldText('\$${productDetailEntity.price}', 20),
-              ],
+          GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: Container(
+              height: 54,
+              decoration: BoxDecoration(
+                  color: orange, borderRadius: BorderRadius.circular(10)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  whiteBoldText('Add to Cart', 20),
+                  whiteBoldText('\$${productDetailEntity.price}', 20),
+                ],
+              ),
             ),
           )
         ],

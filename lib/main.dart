@@ -1,6 +1,7 @@
 import 'package:ecommerce_project/features/main/presentation/bloc/cubit/category_cubit.dart';
 import 'package:ecommerce_project/features/main/presentation/bloc/main_bloc.dart';
 import 'package:ecommerce_project/features/main/presentation/bloc/product_bloc/product_bloc.dart';
+import 'package:ecommerce_project/features/main/presentation/pages/cart_page.dart';
 import 'package:ecommerce_project/features/main/presentation/pages/product_detail_page.dart';
 import 'package:ecommerce_project/locator_service.dart' as di;
 import 'package:ecommerce_project/locator_service.dart';
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
           fontFamily: 'MarkPro',
           primaryColor: Color(0xffE5E5E5),
         ),
-        home: FirstPage(),
+        home: CartPage(),
       ),
     );
   }

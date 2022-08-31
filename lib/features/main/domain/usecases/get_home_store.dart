@@ -4,14 +4,13 @@ import 'package:ecommerce_project/features/main/domain/entities/home_page_entity
 import 'package:ecommerce_project/features/main/domain/entities/my_cart_entity.dart';
 import 'package:ecommerce_project/features/main/domain/entities/product_detail_entity.dart';
 import 'package:ecommerce_project/features/main/domain/repositories/home_repository.dart';
-import 'package:ecommerce_project/features/main/domain/usecases/get_my_cart.dart';
 
 import '../../../../core/error/failure.dart';
 
-class GetHomeStore {
+class GetUseCases {
   final HomeRepository homeRepository;
 
-  GetHomeStore({required this.homeRepository});
+  GetUseCases({required this.homeRepository});
 
   Future<Either<Failure, List<HomeStoreEntity>>> getHomeStore() async {
     return await homeRepository.getHomeStore();

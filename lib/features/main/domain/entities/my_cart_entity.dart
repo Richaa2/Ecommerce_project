@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 
 class MyCartEntity extends Equatable {
-  final List<dynamic> basket;
+  final List<BasketEntity> basket;
   final String delivery;
   final String id;
   final int total;

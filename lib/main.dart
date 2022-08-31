@@ -8,6 +8,7 @@ import 'package:ecommerce_project/locator_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'features/main/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'features/main/presentation/pages/first_page.dart';
 
 void main() async {
@@ -30,15 +31,16 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => CategoryCubit(),
         ),
-        BlocProvider(create: (context) => sl<ProductBloc>())
+        BlocProvider(create: (context) => sl<ProductBloc>()),
+        BlocProvider(create: (context) => sl<CartBloc>())
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'E-Commerce',
         theme: ThemeData(
           fontFamily: 'MarkPro',
           primaryColor: Color(0xffE5E5E5),
         ),
-        home: CartPage(),
+        home: FirstPage(),
       ),
     );
   }

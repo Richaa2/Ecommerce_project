@@ -1,5 +1,6 @@
 import 'package:ecommerce_project/consts.dart';
 import 'package:ecommerce_project/features/main/domain/entities/product_detail_entity.dart';
+import 'package:ecommerce_project/features/main/presentation/pages/cart_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -97,7 +98,8 @@ class Details extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () => Navigator.pop(context),
+            onTap: () => Navigator.push(
+                context, MaterialPageRoute(builder: (context) => CartPage())),
             child: Container(
               height: 54,
               decoration: BoxDecoration(

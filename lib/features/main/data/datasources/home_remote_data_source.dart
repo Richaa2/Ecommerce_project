@@ -131,7 +131,6 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
         basketOrigin.forEach((element) {
           basket.add(BasketEntity.fromMap(element));
         });
-        print(basket.toString());
         return CartModel(
             delivery: delivery, basket: basket, id: id, total: total);
       } catch (e) {

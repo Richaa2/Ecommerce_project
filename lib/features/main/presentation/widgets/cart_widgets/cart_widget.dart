@@ -1,5 +1,6 @@
 import 'package:ecommerce_project/consts.dart';
 import 'package:ecommerce_project/features/main/domain/entities/my_cart_entity.dart';
+import 'package:ecommerce_project/features/main/presentation/pages/first_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -75,17 +76,23 @@ class CartWidget extends StatelessWidget {
           Padding(
             padding:
                 const EdgeInsets.only(left: 24, right: 24, bottom: 24, top: 20),
-            child: Container(
-              height: 60,
-              decoration: BoxDecoration(
-                color: orange,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Center(
-                child: Text(
-                  'Checkout',
-                  style: TextStyle(
-                      color: white, fontWeight: FontWeight.w700, fontSize: 20),
+            child: GestureDetector(
+              onTap: (() =>
+                  Navigator.popUntil(context, (route) => route.isFirst)),
+              child: Container(
+                height: 60,
+                decoration: BoxDecoration(
+                  color: orange,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Center(
+                  child: Text(
+                    'Checkout',
+                    style: TextStyle(
+                        color: white,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 20),
+                  ),
                 ),
               ),
             ),
@@ -139,7 +146,7 @@ class CartWidget extends StatelessWidget {
             size: 20,
           ),
           const Text(
-            '2',
+            '1',
             style: const TextStyle(
                 color: white, fontWeight: FontWeight.w500, fontSize: 20),
           ),

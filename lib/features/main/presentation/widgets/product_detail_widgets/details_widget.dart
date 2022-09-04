@@ -1,10 +1,16 @@
+import 'dart:developer';
+
 import 'package:ecommerce_project/consts.dart';
 import 'package:ecommerce_project/features/main/domain/entities/product_detail_entity.dart';
+import 'package:ecommerce_project/features/main/presentation/bloc/capacity_cubit/capacity_cubit.dart';
+import 'package:ecommerce_project/features/main/presentation/bloc/product_bloc/product_bloc.dart';
+import 'package:ecommerce_project/features/main/presentation/bloc/product_detail_cubit/product_detail_cubit.dart';
 import 'package:ecommerce_project/features/main/presentation/pages/cart_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Details extends StatelessWidget {
@@ -71,8 +77,8 @@ class Details extends StatelessWidget {
             children: [
               detail(Icons.memory_outlined, productDetailEntity.cpu),
               detail(Icons.camera_alt_outlined, productDetailEntity.camera),
-              detail(Icons.sd_card_outlined, productDetailEntity.ssd),
-              detail(FontAwesomeIcons.memory, productDetailEntity.sd),
+              detail(FontAwesomeIcons.memory, productDetailEntity.ssd),
+              detail(Icons.sd_card_outlined, productDetailEntity.sd),
             ],
           ),
           const Text(
@@ -82,20 +88,65 @@ class Details extends StatelessWidget {
                 fontSize: 16,
                 fontWeight: FontWeight.w500),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 15, bottom: 27),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                colorButton(true),
-                colorButton(false),
-                const SizedBox(
-                  width: 20,
-                ),
-                capacityContainer(true),
-                capacityContainer(false)
-              ],
-            ),
+          BlocConsumer<CapacityCubit, CapacityState>(
+            listener: (context, state) {
+              log(state.toString());
+            },
+            builder: (context, stateCapacity) {
+              return BlocConsumer<ProductDetailCubit, ProductDetailState>(
+                listener: (context, state) {
+                  log(state.toString());
+                },
+                builder: (context, stateColor) {
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 15, bottom: 27),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        colorButton(
+                          brownOrBlue: true,
+                          checkMark: stateColor is ProductChangedColorState
+                              ? true
+                              : false,
+                          onTap: () => BlocProvider.of<ProductDetailCubit>(
+                                  context)
+                              .changeColor(ProductChangedSecondColorState()),
+                        ),
+                        colorButton(
+                            brownOrBlue: false,
+                            checkMark: stateColor is ProductChangedColorState
+                                ? false
+                                : true,
+                            onTap: () =>
+                                BlocProvider.of<ProductDetailCubit>(context)
+                                    .changeColor(ProductChangedColorState())),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        capacityContainer(
+                          less: true,
+                          onTap: (() => BlocProvider.of<CapacityCubit>(context)
+                              .changeCapacity(
+                                  CapacityChangedSecondColorState())),
+                          color:
+                              stateCapacity is CapacityChangedSecondColorState
+                                  ? false
+                                  : true,
+                        ),
+                        capacityContainer(
+                          less: false,
+                          onTap: (() => BlocProvider.of<CapacityCubit>(context)
+                              .changeCapacity(CapacityChangedColorState())),
+                          color: stateCapacity is CapacityChangedColorState
+                              ? false
+                              : true,
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+            },
           ),
           GestureDetector(
             onTap: () => Navigator.push(
@@ -126,51 +177,61 @@ class Details extends StatelessWidget {
     );
   }
 
-  Padding capacityContainer(bool less) {
+  Padding capacityContainer(
+      {required bool less, void Function()? onTap, required bool color}) {
     return Padding(
       padding: const EdgeInsets.only(left: 20),
-      child: Container(
-        width: 72,
-        height: 30,
-        decoration: BoxDecoration(
-            color: less ? orange : white,
-            borderRadius: BorderRadius.circular(10)),
-        child: Center(
-            child: Text(
-          productDetailEntity.capacity[less ? 0 : 1] + ' GB',
-          style: TextStyle(
-              fontSize: 13,
-              color: less ? white : const Color(0xff8D8D8D),
-              fontWeight: FontWeight.w700),
-        )),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          width: 72,
+          height: 30,
+          decoration: BoxDecoration(
+              color: color ? orange : white,
+              borderRadius: BorderRadius.circular(10)),
+          child: Center(
+              child: Text(
+            productDetailEntity.capacity[less ? 0 : 1] + ' GB',
+            style: TextStyle(
+                fontSize: 13,
+                color: color ? white : const Color(0xff8D8D8D),
+                fontWeight: FontWeight.w700),
+          )),
+        ),
       ),
     );
   }
 
-  Padding colorButton(bool brownOrBlue) {
+  Padding colorButton(
+      {required bool brownOrBlue,
+      void Function()? onTap,
+      required bool checkMark}) {
     return Padding(
       padding: const EdgeInsets.only(right: 18),
-      child: Container(
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Color(
-            int.parse(
-              '0xff' +
-                  productDetailEntity.color[brownOrBlue ? 0 : 1]
-                      .toString()
-                      .substring(1),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Color(
+              int.parse(
+                '0xff' +
+                    productDetailEntity.color[brownOrBlue ? 0 : 1]
+                        .toString()
+                        .substring(1),
+              ),
             ),
           ),
+          child: checkMark
+              ? const Icon(
+                  Icons.check,
+                  color: Color(0xffFAFAFA),
+                  size: 20,
+                )
+              : null,
         ),
-        child: brownOrBlue
-            ? const Icon(
-                Icons.check,
-                color: Color(0xffFAFAFA),
-                size: 20,
-              )
-            : null,
       ),
     );
   }

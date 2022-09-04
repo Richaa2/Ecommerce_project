@@ -34,39 +34,44 @@ class CartPage extends StatelessWidget {
               );
             }
             if (state is CartLoadedState) {
-              return SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 40, vertical: 20),
-                      child: ProductDetailAppBar(
-                        icon: Icons.location_on_outlined,
-                        name: 'Add adress',
+              return Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                    child: ProductDetailAppBar(
+                      icon: Icons.location_on_outlined,
+                      name: 'Add adress',
+                    ),
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(50.0),
+                            child: Text(
+                              'My Cart',
+                              style: TextStyle(
+                                  fontSize: 35, fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                          Container(
+                            height: 700,
+                            decoration: const BoxDecoration(
+                              color: textColorblue,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(30),
+                                topRight: Radius.circular(30),
+                              ),
+                            ),
+                            child: CartWidget(myCart: state.myCart),
+                          )
+                        ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.all(50.0),
-                      child: Text(
-                        'My Cart',
-                        style: TextStyle(
-                            fontSize: 35, fontWeight: FontWeight.w700),
-                      ),
-                    ),
-                    Container(
-                      height: 700,
-                      decoration: BoxDecoration(
-                        color: textColorblue,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30),
-                          topRight: Radius.circular(30),
-                        ),
-                      ),
-                      child: CartWidget(myCart: state.myCart),
-                    )
-                  ],
-                ),
+                  ),
+                ],
               );
             }
             return Container();

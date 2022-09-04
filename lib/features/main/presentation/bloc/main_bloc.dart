@@ -27,8 +27,6 @@ class MainBloc extends Bloc<MainEvent, MainState> {
 
       final failureOrHomeBest = await getHomeStoreBloc.getBestSellers();
       final failureOrHomeStore = await getHomeStoreBloc.getHomeStore();
-      final failureOrCart = await getHomeStoreBloc.getMyCart();
-      final failureOrProduct = await getHomeStoreBloc.getProductDetail();
 
       failureOrHomeBest.fold((failure) => MainErrorState(),
           (bestElement) => homeBestElement.addAll(bestElement));
@@ -36,20 +34,10 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       failureOrHomeStore.fold((failure) => MainErrorState(),
           (homeElement) => homeStoreElement.addAll(homeElement));
 
-      failureOrCart.fold((failure) => MainErrorState(),
-          (cartElement) => pageCartElement = cartElement);
-      failureOrProduct.fold((failure) => MainErrorState(),
-          (productElement) => productDetailElement = productElement);
-
-      if (homeBestElement.isNotEmpty &&
-          homeStoreElement.isNotEmpty &&
-          productDetailElement != null &&
-          pageCartElement != null) {
+      if (homeBestElement.isNotEmpty && homeStoreElement.isNotEmpty) {
         emit(MainLoadedState(
           homeStore: homeStoreElement,
           bestSeller: homeBestElement,
-          productDetail: productDetailElement,
-          myCart: pageCartElement,
         ));
       }
     });

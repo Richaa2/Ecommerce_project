@@ -14,7 +14,7 @@ class ProductDetailAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 25),
+      padding: const EdgeInsets.only(top: 25),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -43,7 +43,7 @@ class ProductDetailAppBar extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),
-            primary: closeOrDone ? textColorblue : orange,
+            backgroundColor: closeOrDone ? textColorblue : orange,
             // fixedSize: Size(10, 10),
             // maximumSize: Size(37, 37),
           ),

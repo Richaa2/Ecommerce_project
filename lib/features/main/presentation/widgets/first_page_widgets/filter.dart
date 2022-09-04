@@ -29,9 +29,9 @@ Future<dynamic> showModalBottomSheetMetod(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     button(() => Navigator.pop(context), true),
-                    SizedBox(
-                      width: 63,
-                    ),
+                    // SizedBox(
+                    //   width: 63,
+                    // ),
                     const Text(
                       'Filter options',
                       style: TextStyle(
@@ -39,9 +39,9 @@ Future<dynamic> showModalBottomSheetMetod(
                           fontWeight: FontWeight.w500,
                           fontSize: 18),
                     ),
-                    SizedBox(
-                      width: 30,
-                    ),
+                    // SizedBox(
+                    //   width: 30,
+                    // ),
                     button(() => Navigator.pop(context), false),
                   ],
                 ),

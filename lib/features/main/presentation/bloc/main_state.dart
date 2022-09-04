@@ -14,11 +14,8 @@ class MainLoadingState extends MainState {}
 class MainLoadedState extends MainState {
   final List<HomeStoreEntity> homeStore;
   final List<BestSellerEntity> bestSeller;
-  final ProductDetailEntity productDetail;
-  final MyCartEntity myCart;
+
   MainLoadedState({
-    required this.myCart,
-    required this.productDetail,
     required this.homeStore,
     required this.bestSeller,
   });

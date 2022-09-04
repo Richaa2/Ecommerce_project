@@ -26,12 +26,6 @@ class HomeList extends StatelessWidget {
           if (state is MainLoadedState) {
             homePageStoreElement = state.homeStore;
             homePageBestElement = state.bestSeller;
-            ProductDetailEntity productDetailPage = state.productDetail;
-            MyCartEntity cartPage = state.myCart;
-            print(homePageStoreElement.length);
-            print(homePageBestElement.length);
-            print(productDetailPage.id);
-            print(cartPage.basket);
 
             return Row(
               children: [

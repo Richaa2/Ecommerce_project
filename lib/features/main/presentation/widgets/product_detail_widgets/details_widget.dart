@@ -3,13 +3,9 @@ import 'dart:developer';
 import 'package:ecommerce_project/consts.dart';
 import 'package:ecommerce_project/features/main/domain/entities/product_detail_entity.dart';
 import 'package:ecommerce_project/features/main/presentation/bloc/capacity_cubit/capacity_cubit.dart';
-import 'package:ecommerce_project/features/main/presentation/bloc/product_bloc/product_bloc.dart';
 import 'package:ecommerce_project/features/main/presentation/bloc/product_detail_cubit/product_detail_cubit.dart';
 import 'package:ecommerce_project/features/main/presentation/pages/cart_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -120,9 +116,9 @@ class Details extends StatelessWidget {
                             onTap: () =>
                                 BlocProvider.of<ProductDetailCubit>(context)
                                     .changeColor(ProductChangedColorState())),
-                        const SizedBox(
-                          width: 20,
-                        ),
+                        // const SizedBox(
+                        //   width: 10,
+                        // ),
                         capacityContainer(
                           less: true,
                           onTap: (() => BlocProvider.of<CapacityCubit>(context)

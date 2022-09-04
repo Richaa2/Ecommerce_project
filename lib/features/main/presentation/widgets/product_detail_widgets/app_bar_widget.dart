@@ -6,7 +6,10 @@ import 'package:flutter/src/widgets/framework.dart';
 import '../../../../../consts.dart';
 
 class ProductDetailAppBar extends StatelessWidget {
-  const ProductDetailAppBar({Key? key}) : super(key: key);
+  final String name;
+  final IconData icon;
+  const ProductDetailAppBar({Key? key, required this.name, required this.icon})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +19,9 @@ class ProductDetailAppBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           button(() => Navigator.pop(context), true),
-          const Text(
-            'Product Details',
+          SizedBox(width: name == 'Add adress' ? 100 : null),
+          Text(
+            name,
             style: const TextStyle(
                 color: textColorblue,
                 fontSize: 18,
@@ -29,6 +33,7 @@ class ProductDetailAppBar extends StatelessWidget {
     );
   }
 
+//TODO change to container
   SizedBox button(void Function()? onPressed, bool closeOrDone) {
     return SizedBox(
       width: 48,
@@ -45,9 +50,9 @@ class ProductDetailAppBar extends StatelessWidget {
           onPressed: onPressed,
           child: Center(
             child: Icon(
-              closeOrDone ? Icons.arrow_back : Icons.shopping_bag_outlined,
+              closeOrDone ? Icons.arrow_back : icon,
               color: white,
-              size: 14,
+              size: 17,
             ),
           )),
     );

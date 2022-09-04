@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:ecommerce_project/features/main/presentation/bloc/cubit/category_cubit.dart';
+import 'package:ecommerce_project/features/main/presentation/bloc/category_cubit/category_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

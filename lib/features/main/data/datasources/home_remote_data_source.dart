@@ -1,9 +1,11 @@
 import 'dart:convert';
 
 import 'package:ecommerce_project/core/error/exception.dart';
+import 'package:ecommerce_project/features/main/data/models/basket_model.dart';
 import 'package:ecommerce_project/features/main/data/models/cart_model.dart';
 import 'package:ecommerce_project/features/main/data/models/home_model.dart';
 import 'package:ecommerce_project/features/main/data/models/product_detail_model.dart';
+import 'package:ecommerce_project/features/main/domain/entities/my_cart_entity.dart';
 import 'package:http/http.dart' as http;
 
 abstract class HomeRemoteDataSource {
@@ -120,10 +122,15 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
       final cartElement = jsonDecode(response.body);
 
       try {
-        final basket = cartElement["basket"];
+        List<BasketEntity> basket = [];
+        final basketOrigin = cartElement["basket"] as List;
+
         final delivery = cartElement["delivery"] as String;
         final id = cartElement["id"] as String;
         final total = cartElement["total"] as int;
+        basketOrigin.forEach((element) {
+          basket.add(BasketEntity.fromMap(element));
+        });
         return CartModel(
             delivery: delivery, basket: basket, id: id, total: total);
       } catch (e) {

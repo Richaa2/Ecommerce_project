@@ -8,13 +8,13 @@ part 'product_event.dart';
 part 'product_state.dart';
 
 class ProductBloc extends Bloc<ProductEvent, ProductState> {
-  final GetHomeStore getHomeStoreBloc;
-  ProductBloc({required this.getHomeStoreBloc}) : super(ProductInitialState()) {
+  final GetUseCases getProductDetail;
+  ProductBloc({required this.getProductDetail}) : super(ProductInitialState()) {
     on<LoadProductEvent>((event, emit) async {
       emit(ProduntLoadingState());
       late ProductDetailEntity productDetailElement;
 
-      final failureOrProduct = await getHomeStoreBloc.getProductDetail();
+      final failureOrProduct = await getProductDetail.getProductDetail();
 
       failureOrProduct.fold((failure) => ProductErrorState(),
           (productElement) => productDetailElement = productElement);

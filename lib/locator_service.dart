@@ -3,6 +3,7 @@ import 'package:ecommerce_project/features/main/data/datasources/home_remote_dat
 import 'package:ecommerce_project/features/main/data/repositories/home_repository_impl.dart';
 import 'package:ecommerce_project/features/main/domain/repositories/home_repository.dart';
 import 'package:ecommerce_project/features/main/domain/usecases/get_home_store.dart';
+import 'package:ecommerce_project/features/main/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:ecommerce_project/features/main/presentation/bloc/main_bloc.dart';
 import 'package:ecommerce_project/features/main/presentation/bloc/product_bloc/product_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -15,12 +16,9 @@ init() {
   sl.registerFactory(
     () => MainBloc(getHomeStoreBloc: sl()),
   );
-  sl.registerFactory(() => ProductBloc(getHomeStoreBloc: sl()));
-  sl.registerLazySingleton(
-    () => GetHomeStore(
-      homeRepository: sl(),
-    ),
-  );
+  sl.registerFactory(() => ProductBloc(getProductDetail: sl()));
+  sl.registerFactory(() => CartBloc(getHomeStoreBloc: sl()));
+  sl.registerLazySingleton(() => GetUseCases(homeRepository: sl()));
   sl.registerLazySingleton<HomeRepository>(
     () => HomeRepositoryImpl(networkInfo: sl(), remoteDataSource: sl()),
   );

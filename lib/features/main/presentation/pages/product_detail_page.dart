@@ -37,7 +37,10 @@ class ProductDetailPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    ProductDetailAppBar(),
+                    ProductDetailAppBar(
+                      icon: Icons.shopping_bag_outlined,
+                      name: 'Product Details',
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(

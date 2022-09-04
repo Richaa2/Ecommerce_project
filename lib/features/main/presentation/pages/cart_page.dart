@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:ecommerce_project/features/main/domain/entities/my_cart_entity.dart';
 import 'package:ecommerce_project/features/main/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -62,10 +63,8 @@ class CartPage extends StatelessWidget {
                           topRight: Radius.circular(30),
                         ),
                       ),
-                      child: CartWidget(
-                        myCart: state.myCart,
-                      ),
-                    ),
+                      child: CartWidget(myCart: state.myCart),
+                    )
                   ],
                 ),
               );

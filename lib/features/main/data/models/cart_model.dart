@@ -17,10 +17,14 @@ class CartModel extends MyCartEntity {
 
   //TODO FIX BASKET ENTITY
   factory CartModel.fromJson(Map<String, dynamic> json) {
+    // var tagObjsJson = json['basket'] as List;
+    // List<BasketEntity> _basketModelList = tagObjsJson
+    //     .map((e) => BasketModel.fromJson(e) as BasketEntity)
+    //     .toList();
     return CartModel(
-      basket: json['basket'] != null
-          ? BasketModel.fromJson(json['basket']) as BasketEntity
-          : null,
+      basket: List<BasketModel>.from(json['basket']),
+      // basket: _basketModelList,
+      // basket: BasketModel.fromJson(json['basket']) as List<BasketEntity>,
       delivery: json['delivery'] as String,
       total: json['total'] as int,
       id: json['id'] as String,

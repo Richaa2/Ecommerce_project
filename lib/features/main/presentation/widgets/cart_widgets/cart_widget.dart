@@ -7,13 +7,16 @@ import 'package:flutter/src/widgets/framework.dart';
 
 class CartWidget extends StatelessWidget {
   final MyCartEntity myCart;
-  const CartWidget({
+
+  CartWidget({
     Key? key,
     required this.myCart,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    print(myCart.basket[1].id);
+
     return Padding(
       padding: const EdgeInsets.only(top: 80.0, left: 20, right: 20),
       child: Column(
@@ -33,6 +36,9 @@ class CartWidget extends StatelessWidget {
                       width: 85,
                       height: 90,
                       decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(myCart.basket[index].images),
+                              fit: BoxFit.fitWidth),
                           borderRadius: BorderRadius.circular(10),
                           color: white),
                     ),
@@ -40,7 +46,7 @@ class CartWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         textCart(myCart.basket[index].title, white),
-                        textCart('\$3000', orange)
+                        textCart('\$${myCart.basket[index].price}', orange)
                       ],
                     ),
                     controlContainer(),
@@ -59,8 +65,8 @@ class CartWidget extends StatelessWidget {
             color: white.withOpacity(0.3),
             thickness: 1,
           ),
-          textSum('Total', '\$6,000 us'),
-          textSum('Delivery', 'Free'),
+          textSum('Total', '\$${myCart.total} us'),
+          textSum('Delivery', myCart.delivery),
           Divider(
             height: 10,
             color: white.withOpacity(0.2),

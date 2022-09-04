@@ -29,4 +29,29 @@ class BasketEntity {
       required this.images,
       required this.price,
       required this.title});
+
+  Map<String, dynamic> toMap() {
+    final result = <String, dynamic>{};
+
+    result.addAll({'id': id});
+    result.addAll({'images': images});
+    result.addAll({'price': price});
+    result.addAll({'title': title});
+
+    return result;
+  }
+
+  factory BasketEntity.fromMap(Map<String, dynamic> map) {
+    return BasketEntity(
+      id: map['id'] ?? '',
+      images: map['images'] ?? '',
+      price: map['price']?.toInt() ?? 0,
+      title: map['title'] ?? '',
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory BasketEntity.fromJson(String source) =>
+      BasketEntity.fromMap(json.decode(source));
 }
